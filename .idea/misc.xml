@@ -12,6 +12,7 @@
       <set>
         <option value="$PROJECT_DIR$/mem0-client-core/pom.xml" />
         <option value="$PROJECT_DIR$/mem0-client-java-example/pom.xml" />
+        <option value="$PROJECT_DIR$/mem0-spring-ai-starter/pom.xml" />
       </set>
     </option>
   </component>
