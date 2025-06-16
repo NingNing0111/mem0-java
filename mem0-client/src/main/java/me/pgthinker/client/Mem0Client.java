@@ -1,5 +1,6 @@
 package me.pgthinker.client;
 
+import me.pgthinker.dto.request.MemoryConfigRequest;
 import me.pgthinker.dto.request.MemoryCreateRequest;
 import me.pgthinker.dto.request.MemoryDeleteRequest;
 import me.pgthinker.dto.request.MemorySearchRequest;
@@ -32,6 +33,27 @@ public class Mem0Client {
 		this.baseUrl = baseUrl;
 		this.restTemplate = restTemplate;
 		this.restTemplate.getInterceptors().add(new Mem0AuthInterceptor(token));
+	}
+
+	public Boolean configure(MemoryConfigRequest request) {
+		URI uri = UriComponentsBuilder.fromUriString(this.baseUrl + "/configure").build().encode().toUri();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<MemoryConfigRequest> entity = new HttpEntity(request, headers);
+		ResponseEntity<ResponseWrapper> response = this.restTemplate.exchange(uri, HttpMethod.POST, entity,
+				ResponseWrapper.class);
+		if (response.getBody() == null) {
+			throw new Mem0ClientException("Set memory configuration failed!", uri.toString());
+		}
+		else {
+			boolean operationSuccess = ((ResponseWrapper) response.getBody()).getMessage() != null;
+			if (operationSuccess) {
+				log.info("Set memory configuration successful: {} -> {}", uri,
+						((ResponseWrapper) response.getBody()).getMessage());
+			}
+
+			return operationSuccess;
+		}
 	}
 
 	public List<Memory> createMemory(MemoryCreateRequest request) {
