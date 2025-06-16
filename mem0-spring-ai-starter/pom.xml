@@ -6,15 +6,29 @@
     <parent>
         <groupId>me.pgthinker</groupId>
         <artifactId>mem0-client-java</artifactId>
-        <version>0.1.2</version>
+        <version>0.1.4</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>mem0-spring-ai-starter</artifactId>
+    <name>mem0-spring-ai-starter</name>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <description>mem0 client spring ai</description>
+    <url>https://github.com/ningning0111/mem0-java</url>
+
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>me.pgthinker</groupId>
+            <artifactId>mem0-spring-boot-starter</artifactId>
+            <version>${reversion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-client-chat</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>
